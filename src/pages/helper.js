@@ -3,6 +3,13 @@ import L from 'leaflet';
 const geoserverAddress = "http://services.gsd.spc.int:8089/";
 
 export function addaccesss(mapContainer, time){
+    var layer = L.tileLayer('http://localhost/nanumaga_tiles/{z}/{x}/{y}.png', {
+        attribution: '&copy; Pacific Community (OSMx)',
+        detectRetina: true
+    });
+    return layer;
+
+    /*
     var layer = L.tileLayer.betterWms("http://149.28.173.12/thredds/wms/Oceans/Cosppac/sst.forecast.anom.monthly.nc", {
         layers: "sst",
         format: 'image/png',
@@ -15,7 +22,7 @@ export function addaccesss(mapContainer, time){
         numcolorbands: 260,
         time: time,
     }).addTo(mapContainer);
-    return layer;
+    return layer;*/
 }
 
 export function addaccesssugridcon(mapContainer, time){

@@ -112,7 +112,7 @@ const SignUp = () => {
     setStep(ds.length-1)
  
     if(mapContainer.current._containerId == null){
-        baseLayer.current = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+        baseLayer.current = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: '&copy; Pacific Community (OSM)',
           detectRetina: true
       });
@@ -145,27 +145,32 @@ L.Marker.prototype.options.icon = DefaultIcon;
 
    //end
     }
+
+    mapContainer.current.on('zoomend', function (e) {
+      console.log(e.target._zoom);
+  });
     
     if(layer.current == null){
+      console.log('added layer')
       layer.current = addaccesss(mapContainer.current, ds[pointer])
-      layer2.current = addEEZ(mapContainer.current)
+ //     layer2.current = addEEZ(mapContainer.current)
       //LEGENDD
   
-  legendRef.current = L.control({ position: "topright", id:12 });
-
+  //legendRef.current = L.control({ position: "topright", id:12 });
+/*
   legendRef.current.onAdd = function() {
     var div = L.DomUtil.create("div", "legend");
           div.innerHTML += "<h4>Legend</h4>";
           div.innerHTML += '<img src="http://149.28.173.12/thredds/wms/Oceans/Cosppac/sst.forecast.anom.monthly.nc?version=1.3.0&request=GetLegendGraphic&LAYERS=sst&STYLES=default-scalar/div-Spectral-inv&numcolorbands=250&transparent=TRUE&width=50&height=200&colorscalerange=-2,2" alt="Legend">';
          return div;
-};
-  legendRef.current.addTo(mapContainer.current);
+};*/
+  //legendRef.current.addTo(mapContainer.current);
     }
     else{
 
-    mapContainer.current.removeLayer(layer.current);
-    layer.current = addaccesss(mapContainer.current, ds[pointer])
-    layer2.current = addEEZ(mapContainer.current)
+   // mapContainer.current.removeLayer(layer.current);
+    //layer.current = addaccesss(mapContainer.current, ds[pointer])
+    //layer2.current = addEEZ(mapContainer.current)
     
     const redIcon2 = new L.Icon({
       iconUrl:
